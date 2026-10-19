@@ -16,4 +16,4 @@ Java 21 · Swing · Oracle Database · JDBC
 
 ## Autor
 
-- Nombre del estudiante
+- Diego Florián
