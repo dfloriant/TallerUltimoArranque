@@ -27,9 +27,9 @@ public class VentanaPrincipal extends JFrame {
         JMenuBar barra = new JMenuBar();
 
         JMenu catalogos = new JMenu("Catálogos");
-        catalogos.add(item("Clientes"));
-        catalogos.add(item("Vehículos"));
-        catalogos.add(item("Mecánicos"));
+        catalogos.add(item("Clientes", () -> new FrmClientes().setVisible(true)));
+        catalogos.add(item("Vehículos", () -> new FrmVehiculos().setVisible(true)));
+        catalogos.add(item("Mecánicos", () -> new FrmMecanicos().setVisible(true)));
         catalogos.add(item("Repuestos"));
         catalogos.add(item("Servicios"));
 
@@ -56,8 +56,12 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private JMenuItem item(String texto) {
+        return item(texto, () -> JOptionPane.showMessageDialog(this, texto + ": pendiente de implementar"));
+    }
+
+    private JMenuItem item(String texto, Runnable accion) {
         JMenuItem item = new JMenuItem(texto);
-        item.addActionListener(e -> JOptionPane.showMessageDialog(this, texto + ": pendiente de implementar"));
+        item.addActionListener(e -> accion.run());
         return item;
     }
 }
