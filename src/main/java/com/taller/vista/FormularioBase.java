@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -134,6 +135,23 @@ public abstract class FormularioBase extends JFrame {
         } catch (NumberFormatException e) {
             campo.requestFocus();
             throw new ValidacionException("El campo " + nombre + " debe ser un número entero.");
+        }
+    }
+
+    protected BigDecimal leerDecimal(JTextField campo, String nombre) throws ValidacionException {
+        String valor = leer(campo, nombre, true);
+        try {
+            BigDecimal numero = new BigDecimal(valor);
+            if (numero.compareTo(BigDecimal.ZERO) < 0) {
+                throw new ValidacionException("El campo " + nombre + " no puede ser negativo.");
+            }
+            if (numero.scale() > 2) {
+                throw new ValidacionException("El campo " + nombre + " admite como máximo 2 decimales.");
+            }
+            return numero;
+        } catch (NumberFormatException e) {
+            campo.requestFocus();
+            throw new ValidacionException("El campo " + nombre + " debe ser un número válido (ejemplo: 125.50).");
         }
     }
 
