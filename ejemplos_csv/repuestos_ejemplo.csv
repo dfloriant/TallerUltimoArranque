@@ -1,0 +1,6 @@
+﻿id_repuesto,nombre,descripcion,precio,existencia
+R101,Bujía NGK,Bujía de iridio,65.00,24
+R102,Pastillas de freno,Juego delantero,280.00,4
+R001,Aceite 15W40,Repetido a propósito,175.00,10
+R103,Faja de tiempo,Precio negativo,-50.00,3
+R104,Termostato,Existencia inválida,120.00,diez

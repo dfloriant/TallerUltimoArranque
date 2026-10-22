@@ -1,0 +1,6 @@
+﻿id_cliente,nombre,apellido,telefono,direccion,correo
+9001234567801,Luis,Ramírez,55667788,"Zona 5, Guatemala",luis@correo.com
+9001234567802,Sofía,Hernández,55998877,Antigua Guatemala,sofia@correo.com
+1234567890101,Carlos,Pérez,55123456,Zona 1,carlos@correo.com
+9001234567803,,Morales,55112233,Escuintla,sin@nombre.com
+9001234567804,Pedro,Castillo,123,Cobán,pedro@correo.com

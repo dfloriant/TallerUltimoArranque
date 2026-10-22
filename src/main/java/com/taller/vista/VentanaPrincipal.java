@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class VentanaPrincipal extends JFrame {
@@ -38,25 +37,26 @@ public class VentanaPrincipal extends JFrame {
         ordenes.add(item("Gestión de órdenes", () -> new FrmOrdenes().setVisible(true)));
 
         JMenu reportes = new JMenu("Reportes");
-        reportes.add(item("Órdenes por estado"));
-        reportes.add(item("Reparaciones por vehículo"));
-        reportes.add(item("Repuestos con bajo inventario"));
-        reportes.add(item("Reparaciones por mecánico"));
-        reportes.add(item("Ingresos por reparaciones"));
+        for (int i = 0; i < FrmReportes.TITULOS.length; i++) {
+            int pestana = i;
+            reportes.add(item(FrmReportes.TITULOS[i], () -> new FrmReportes(pestana).setVisible(true)));
+        }
 
+        JMenu importar = new JMenu("Importar CSV");
+        JMenu exportar = new JMenu("Exportar CSV");
+        for (HerramientasCSV.Catalogo catalogo : HerramientasCSV.Catalogo.values()) {
+            importar.add(item(catalogo.toString(), () -> HerramientasCSV.importar(this, catalogo)));
+            exportar.add(item(catalogo.toString(), () -> HerramientasCSV.exportar(this, catalogo)));
+        }
         JMenu herramientas = new JMenu("Herramientas");
-        herramientas.add(item("Importar CSV"));
-        herramientas.add(item("Exportar CSV"));
+        herramientas.add(importar);
+        herramientas.add(exportar);
 
         barra.add(catalogos);
         barra.add(ordenes);
         barra.add(reportes);
         barra.add(herramientas);
         return barra;
-    }
-
-    private JMenuItem item(String texto) {
-        return item(texto, () -> JOptionPane.showMessageDialog(this, texto + ": pendiente de implementar"));
     }
 
     private JMenuItem item(String texto, Runnable accion) {
