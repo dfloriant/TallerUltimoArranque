@@ -34,8 +34,8 @@ public class VentanaPrincipal extends JFrame {
         catalogos.add(item("Servicios", () -> new FrmServicios().setVisible(true)));
 
         JMenu ordenes = new JMenu("Órdenes");
-        ordenes.add(item("Recepción de vehículo"));
-        ordenes.add(item("Gestión de órdenes"));
+        ordenes.add(item("Recepción de vehículo", () -> new FrmRecepcion().setVisible(true)));
+        ordenes.add(item("Gestión de órdenes", () -> new FrmOrdenes().setVisible(true)));
 
         JMenu reportes = new JMenu("Reportes");
         reportes.add(item("Órdenes por estado"));
